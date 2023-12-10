@@ -1,6 +1,7 @@
 package com.bridgelabz.employeepayrolldb;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -17,9 +18,7 @@ public class Main {
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
             System.out.println("Connection to database established.");
             EmployeePayrollDB employeePayrollServiceDB = new EmployeePayrollDB(connection);
-            employeePayrollServiceDB.updateEmployeeSalary("Daksh", 50000.52F);
-            EmployeePayrollService employeePayrollService = new EmployeePayrollService(employeePayrollServiceDB.retrieveEmployeePayrollData());
-            employeePayrollService.printEmployeePayroll();
+            employeePayrollServiceDB.getAverageSalaryMale();
             // Close the connection
             connection.close();
             System.out.println("Connection closed.");
