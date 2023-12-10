@@ -56,4 +56,27 @@ public class EmployeePayrollDB{
         }
         return employeePayrollList;
     }
+
+    /*
+        @desc: function for upating user
+        @params: name, basicpay
+        @return: void
+     */
+    public void updateEmployeeSalary(String employeeName, Float newSalary) {
+            String sqlUpdate = "UPDATE payroll pay join employee emp on pay.employeeid=emp.employeeid SET pay.BasicPay = ? WHERE emp.EmployeeName = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sqlUpdate)) {
+                preparedStatement.setFloat(1, newSalary);
+                preparedStatement.setString(2, employeeName);
+                int rowsAffected = preparedStatement.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    System.out.println("Salary updated successfully in the database.");
+                } else {
+                    System.out.println("Employee not found or no changes made.");
+                }
+            }
+         catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

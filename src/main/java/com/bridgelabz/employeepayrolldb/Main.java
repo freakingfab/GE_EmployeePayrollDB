@@ -17,7 +17,7 @@ public class Main {
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
             System.out.println("Connection to database established.");
             EmployeePayrollDB employeePayrollServiceDB = new EmployeePayrollDB(connection);
-
+            employeePayrollServiceDB.updateEmployeeSalary("Daksh", 50000.52F);
             EmployeePayrollService employeePayrollService = new EmployeePayrollService(employeePayrollServiceDB.retrieveEmployeePayrollData());
             employeePayrollService.printEmployeePayroll();
             // Close the connection
