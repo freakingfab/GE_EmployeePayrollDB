@@ -1,4 +1,4 @@
-package org.example;
+package com.bridgelabz.employeepayrolldb;
 
 import java.util.Date;
 

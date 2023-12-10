@@ -1,4 +1,4 @@
-package org.example;
+package com.bridgelabz.employeepayrolldb;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,7 +16,10 @@ public class Main {
             // Establish a connection
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
             System.out.println("Connection to database established.");
+            EmployeePayrollDB employeePayrollServiceDB = new EmployeePayrollDB(connection);
 
+            EmployeePayrollService employeePayrollService = new EmployeePayrollService(employeePayrollServiceDB.retrieveEmployeePayrollData());
+            employeePayrollService.printEmployeePayroll();
             // Close the connection
             connection.close();
             System.out.println("Connection closed.");
