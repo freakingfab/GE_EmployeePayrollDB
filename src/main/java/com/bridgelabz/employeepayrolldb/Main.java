@@ -18,7 +18,8 @@ public class Main {
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
             System.out.println("Connection to database established.");
             EmployeePayrollDB employeePayrollServiceDB = new EmployeePayrollDB(connection);
-            employeePayrollServiceDB.getAverageSalaryMale();
+            EmployeePayrollService employeePayrollService = new EmployeePayrollService(employeePayrollServiceDB.retrieveDataAfterDate(Date.valueOf("2022-01-01")));
+            employeePayrollService.printEmployeePayroll();
             // Close the connection
             connection.close();
             System.out.println("Connection closed.");
